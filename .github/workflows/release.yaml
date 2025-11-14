@@ -52,4 +52,5 @@ jobs:
           gh release create ${{ steps.version.outputs.tag }} \
             --title "Release ${{ steps.version.outputs.tag }}" \
             --notes-file notes.md \
+            --draft=false \
             --verify-tag
