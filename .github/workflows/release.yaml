@@ -18,7 +18,6 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ github.ref_name }}
       
       - name: Extract version from tag
         id: version
@@ -31,6 +30,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Checkout main branch to avoid detached HEAD
+          git checkout main
       
       - name: Update kustomization image
         run: |
@@ -42,8 +43,8 @@ jobs:
         run: |
           git add manifests/kustomization.yaml
           git commit -m "ci: update image to ${{ steps.version.outputs.version }}"
+          git push origin main
           git tag -f ${{ steps.version.outputs.tag }}
-          git push origin HEAD:${{ github.ref_name }} --force
           git push origin ${{ steps.version.outputs.tag }} --force
       
       - name: Generate release notes
