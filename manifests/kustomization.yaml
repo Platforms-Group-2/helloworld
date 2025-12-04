@@ -7,5 +7,5 @@ resources:
 
 images:
 - name: helloworld
-  newName: ghcr.io/Platforms-Group-2/helloworld
-  newTag: 1.0.7
+  newName: ghcr.io/platforms-group-2/helloworld
+  newTag: 1.0.8
