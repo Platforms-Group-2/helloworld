@@ -63,7 +63,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ghcr.io/platforms-group-2/helloworld/helloworld
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
@@ -80,18 +80,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      
-      - name: Create release notes with Docker info
-        run: |
-          echo "" >> notes.md
-          echo "## Docker Images" >> notes.md
-          echo "" >> notes.md
-          echo "Multi-architecture Docker images (amd64, arm64) have been published to GitHub Container Registry:" >> notes.md
-          echo "" >> notes.md
-          echo '```' >> notes.md
-          echo "docker pull ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }}" >> notes.md
-          echo "docker pull ghcr.io/${{ github.repository }}:latest" >> notes.md
-          echo '```' >> notes.md
       
       - name: Create GitHub Release
         env:
