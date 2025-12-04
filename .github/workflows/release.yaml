@@ -36,7 +36,8 @@ jobs:
       - name: Update kustomization image
         run: |
           cd manifests
-          kustomize edit set image helloworld=ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }}
+          REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          kustomize edit set image helloworld=ghcr.io/${REPO_LOWER}:${{ steps.version.outputs.version }}
           cd ..
       
       - name: Commit and push kustomization changes
