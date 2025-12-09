@@ -2,6 +2,8 @@ name: Release and Build
 
 on:
   push:
+    branches:
+      - main
     tags:
       - 'v*'
 
