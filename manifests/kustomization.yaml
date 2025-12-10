@@ -8,4 +8,4 @@ resources:
 images:
 - name: helloworld
   newName: ghcr.io/platforms-group-2/helloworld
-  newTag: 1.0.10
+  newTag: 1.0.11
