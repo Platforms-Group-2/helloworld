@@ -42,7 +42,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           cd manifests
           REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-          kustomize edit set image helloworld=ghcr.io/${REPO_LOWER}:${{ steps.semantic.outputs.new_release_version }}
+          kustomize edit set image helloworld=ghcr.io/${REPO_LOWER}:v${{ steps.semantic.outputs.new_release_version }}
           cd ..
           git add manifests/kustomization.yaml
           git commit -m "ci: update image to v${{ steps.semantic.outputs.new_release_version }} [skip ci]"
