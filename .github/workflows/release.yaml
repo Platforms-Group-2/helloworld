@@ -20,6 +20,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
+          token: ${{ github.token }}
       
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -33,7 +34,7 @@ jobs:
         id: semantic
         uses: cycjimmy/semantic-release-action@v4
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Update kustomization image
         if: steps.semantic.outputs.new_release_published == 'true'
